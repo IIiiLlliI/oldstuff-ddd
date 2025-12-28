@@ -1,0 +1,51 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: old-stuff
+
+  data:
+    redis:
+      host: "${REDIS_HOST:127.0.0.1}"
+      port: "${REDIS_PORT:6379}"
+      database: 0
+      connect-timeout: 5s
+      timeout: 5s
+      lettuce:
+        pool:
+          min-idle: 0
+          max-idle: 8
+          max-active: 8
+          max-wait: -1ms
+
+  mail:
+    host: "${MAIL_HOST:smtp.qq.com}"
+    port: "${MAIL_PORT:587}"
+    username: "${MAIL_USERNAME:}"
+    password: "${MAIL_PASSWORD:}"
+
+  datasource:
+    url: "${DB_URL:jdbc:postgresql://localhost:3306/oldstuff_db}"
+    username: "${DB_USERNAME:}"
+    password: "${DB_PASSWORD:}"
+    driver-class-name: org.postgresql.Driver
+
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USER:guest}
+    password: ${RABBIT_MQ_PASS:guest}
+    virtual-host: /
+
+mybatis-plus:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  type-handlers-package: com.oldstuff.cola.config

@@ -1,0 +1,9 @@
+springdoc:
+  swagger-ui:
+    csrf:
+      enabled: false
+  api-docs:
+    enabled: false
+
+knife4j:
+  enable: false
